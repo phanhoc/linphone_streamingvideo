@@ -49,7 +49,8 @@ void *waiting_handle(void *t){
       /*
        * Luu lai IP o day
        */
-      write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
+      if(check_ip("ip_table.txt",inet_ntoa(clie_addr.sin_addr))==0)
+	write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
       if(sendto(sockfd,MSG2,sizeof(MSG2),0,(struct sockaddr*)&clie_addr,sizeof(clie_addr)) < 0) {
 	error("Khong gui dc");
       }
@@ -58,7 +59,8 @@ void *waiting_handle(void *t){
     //fprintf(stdout,"\nRESPONSE\nFrom \nIP: %s\nPort: %i\n",inet_ntoa(clie_addr.sin_addr),clie_addr.sin_port);  
       fprintf(stdout,"%s",now());
       fprintf(stdout,"%s From: \nIP: %s\n\n",msg,inet_ntoa(clie_addr.sin_addr));
-      write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
+      if(check_ip("ip_table.txt",inet_ntoa(clie_addr.sin_addr))==0)
+	write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
     }
     else {
       fprintf(stdout,"Khong ho tro ban tin! \n");

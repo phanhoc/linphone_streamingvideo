@@ -19,3 +19,19 @@ void write_file(char *file_name,char *msg){
   fprintf(fd,"%s\n",msg);
   fclose(fd);
 }
+
+int check_ip(char *file_name,char *ip){
+  FILE *fd = fopen(file_name,"r");
+  char buf[100];
+  if (fd == NULL) {
+    error("cant open file");    
+  }
+  while(fgets(buf,100,fd)!=NULL) {
+    if (strstr(buf,ip)) {
+      fclose(fd);
+      return 1;
+    }
+  }
+  fclose(fd);
+  return 0;
+}

@@ -28,3 +28,5 @@ void error(char *msg);
 char* now();
 /*Ghi vao file*/
 void write_file(char *file_name,char *msg);
+/*Check ip*/
+int check_ip(char *file_name,char *ip);
