@@ -58,6 +58,7 @@ void *waiting_handle(void *t){
     //fprintf(stdout,"\nRESPONSE\nFrom \nIP: %s\nPort: %i\n",inet_ntoa(clie_addr.sin_addr),clie_addr.sin_port);  
       fprintf(stdout,"%s",now());
       fprintf(stdout,"%s From: \nIP: %s\n\n",msg,inet_ntoa(clie_addr.sin_addr));
+      write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
     }
     else {
       fprintf(stdout,"Khong ho tro ban tin! \n");
