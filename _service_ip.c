@@ -43,7 +43,7 @@ void *waiting_handle(void *t){
     //fprintf(stdout,"Got msg: %s\n",msg);
     
     if (strstr(msg,"REQUEST")) {
-      fprintf(stdout,"%s",now());
+      fprintf(stdout,"%s\n",clock_microsecond());
       fprintf(stdout,"%s From: \nIP: %s\n\n",msg,inet_ntoa(clie_addr.sin_addr));
       clie_addr.sin_port = htons(PORT);
       /*
@@ -57,7 +57,7 @@ void *waiting_handle(void *t){
     }
     else if (strstr(msg,"RESPONSE")) {
     //fprintf(stdout,"\nRESPONSE\nFrom \nIP: %s\nPort: %i\n",inet_ntoa(clie_addr.sin_addr),clie_addr.sin_port);  
-      fprintf(stdout,"%s",now());
+      fprintf(stdout,"%s\n",clock_microsecond());
       fprintf(stdout,"%s From: \nIP: %s\n\n",msg,inet_ntoa(clie_addr.sin_addr));
       if(check_ip("ip_table.txt",inet_ntoa(clie_addr.sin_addr))==0)
 	write_file("ip_table.txt",inet_ntoa(clie_addr.sin_addr));
@@ -145,14 +145,11 @@ void broadcast_request_all_interface() {
 
 int main(int argc,char *argv){
   
-  /*
-   * Clear file
-   */
+  /*Clear file*/
   fd = fopen("ip_table.txt","w");
   fclose(fd);
-  /*
-   * Set up thread
-   */
+  
+  /*Create thread*/
   if(pthread_create(&waiting_thread,NULL,waiting_handle,NULL)<0){
     error("Cant create thread waiting");
   }
@@ -160,11 +157,10 @@ int main(int argc,char *argv){
     error("Cant create thread kill");
   }
   
+  /*Broadcast all interface*/
   broadcast_request_all_interface();
     
-  /*
-   * Join thread
-   */
+  /*Join thread*/
   void *result;
   if(pthread_join(waiting_thread,&result)<0) error("cant join thread waiting");
   if(pthread_join(killing_thread,&result)<0) error("cant join thread killing");    

@@ -30,3 +30,7 @@ char* now();
 void write_file(char *file_name,char *msg);
 /*Check ip*/
 int check_ip(char *file_name,char *ip);
+/*Lay clock den microsecond*/
+const char* clock_microsecond();
+/*Get timezone*/
+static int get_timezone(void);
