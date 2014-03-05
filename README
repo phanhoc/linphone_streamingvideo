@@ -3,12 +3,16 @@ Author: Dz
 My service: broadcast all interface and get IP of app using this service
 
 Step to using git:
-1. Add file:
-    git add file_name ( *: all file )
-2. Commit:
+1. Check status: (always)
+    git status
+2. Add/Remove file:
+    git add/rm file_name ( *: all file )
+3. Commit:
     git commit -m "message here"
-3. Push to server:
+4. Push to server:
     git push -u origin master
+5. Pull from server:
+    git pull
     
 Git ID:
     name: phanhoc
