@@ -99,3 +99,10 @@ static int get_timezone(void)
 
   return (time_diff);
 }
+
+int get_file_size(FILE *fd) {
+  fseek(fd,0,SEEK_END);
+  int size = ftell(fd);
+  fseek(fd,0,SEEK_SET);
+  return size;
+}

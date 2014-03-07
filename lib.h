@@ -34,3 +34,5 @@ int check_ip(char *file_name,char *ip);
 const char* clock_microsecond();
 /*Get timezone*/
 static int get_timezone(void);
+/*Get file size*/
+int get_file_size(FILE *fd);

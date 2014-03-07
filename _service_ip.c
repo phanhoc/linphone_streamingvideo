@@ -28,6 +28,9 @@ void *waiting_handle(void *t){
   serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
   serv_addr.sin_port = htons(PORT);
   
+  int reuse = 1;
+  if (setsockopt(sockfd,SOL_SOCKET,SO_REUSEADDR,(char *)&reuse,sizeof(int)) < 0 ) error("cant reuse port");
+  
   if(bind(sockfd,(struct sockaddr*)&serv_addr,sizeof(serv_addr))<0) {
     error("Khong bind dc socket");
   }
