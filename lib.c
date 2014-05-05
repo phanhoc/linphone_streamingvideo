@@ -106,3 +106,17 @@ int get_file_size(FILE *fd) {
   fseek(fd,0,SEEK_SET);
   return size;
 }
+
+char* get_file_name(char* path_to_file_name ){
+  char* file_name;
+  file_name = path_to_file_name;
+  if(strstr(path_to_file_name,"/")==NULL){
+    fprintf(stdout,"Already file name\n");
+  }
+  else{
+    file_name = strstr(path_to_file_name,"/")+1;
+    while(strstr(file_name,"/")!=NULL)
+      file_name = strstr(file_name,"/")+1;
+  }
+  return file_name;
+}

@@ -36,3 +36,5 @@ const char* clock_microsecond();
 static int get_timezone(void);
 /*Get file size*/
 int get_file_size(FILE *fd);
+/*Get file name*/
+char* get_file_name(char* path_to_file_name);
